@@ -1,11 +1,16 @@
 jquery.imagemap
 ===============
 
-HTML image &lt;map&gt; generator
+Advanced HTML image &lt;map&gt; generator
 
 ####Usage####
 ```javascript
-var map = $('img').imagemap({scale: 1});
+var options = {
+  scale: 1,
+  dot_size: 7
+};
+
+var map = $('img').imagemap(options);
 map.start();
 // make few clicks on image
 map.finish();
@@ -22,3 +27,13 @@ Result:
   <area shape="poly" href="#" coords="397,166,407,247,467,169,433,151,402,146">
 </map>
 ```
+
+####Options####
+Name | Default | Description
+-----|---------|------------
+scale|1.0|Image scale ratio
+calibrate| true|Calibrate coordinates for each point (can increase accuracy)
+calibrate_threshold| 7|Threshold of calibration (px)
+draw_dot|true|Draw dot with each click. User can drag it to increase accuracy
+dot_size|10|Draggable dot size
+dot_color|"#999"|Dot color
