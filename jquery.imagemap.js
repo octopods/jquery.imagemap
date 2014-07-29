@@ -158,8 +158,6 @@ imagemap = (function($) {
         var y = parseInt(self.dragging.css('top'), 10);
         var coord_index = self.dragging.data(COORD_INDEX_KEY);
         
-        console.log(coord_index);
-        
         self.coords[coord_index].x = calc_value(x);
         self.coords[coord_index].y = calc_value(y);
         
