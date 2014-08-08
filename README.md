@@ -18,6 +18,9 @@ map.finish();
 map.start();
 // make another few clicks
 map.finish();
+
+// remove map
+map.remove_map();
 ```
 Result:  
 ```html

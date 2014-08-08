@@ -41,6 +41,24 @@ imagemap = (function($) {
     return area;
   }
   
+  self.remove_map = function() {
+    self.map.remove();
+    self.image.unbind('click');
+  }
+  
+  self.restore = function(areas) {
+    areas.map(function(coords) {
+      var area = $('<area/>').attr({
+        shape: 'poly',
+        href: '#',
+        coords: coords,
+        'data-number': self.map.find('area').length
+      });
+      
+      self.map.append(area);
+    });
+  };
+  
   $.fn.imagemap = function(options) {
     
     self.settings = $.extend({
@@ -64,7 +82,7 @@ imagemap = (function($) {
       bind_dots();
     }
     
-    self.start();
+    //self.start();
     
     return self;
   }
@@ -87,7 +105,8 @@ imagemap = (function($) {
     if (coords) {
       var area = $('<area />').attr({
         shape: 'poly',
-        href: '#'
+        href: '#',
+        'data-number': self.map.find('area').length
       });
     
       coords.map(function(coord, index) {
@@ -178,6 +197,7 @@ imagemap = (function($) {
       left: x/self.settings.scale - self.settings.dot_size/2 + 'px',
       top: y/self.settings.scale - self.settings.dot_size/2 + 'px',
       background: self.settings.dot_color,
+      cursor: 'pointer',
       'border-radius': '50%'
     });
     
