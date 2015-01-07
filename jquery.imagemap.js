@@ -89,6 +89,11 @@ imagemap = (function($) {
   
   function bind_click(e) {
     if (self.processing) {
+      if (e.offsetX == undefined) { // bug in Firefox
+        e.offsetX = e.clientX - $(e.target).offset().left;
+        e.offsetY = e.clientY - $(e.target).offset().top + window.pageYOffset;
+      }
+      
       var x = e.offsetX * self.settings.scale;
       var y = e.offsetY * self.settings.scale;
       
@@ -150,6 +155,11 @@ imagemap = (function($) {
     
     self.image.parent().on('mousemove', function(e) {
       if (self.dragging) {
+        if (e.offsetX == undefined) { // bug in Firefox
+          e.offsetX = e.clientX - $(e.target).offset().left;
+          e.offsetY = e.clientY - $(e.target).offset().top + window.pageYOffset;
+        }
+        
         var x = e.offsetX;
         var y = e.offsetY;
         
